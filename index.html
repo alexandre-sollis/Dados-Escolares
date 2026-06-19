@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Central de Documentos</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --primary:#0f172a;
+    --secondary:#1e293b;
+    --accent:#2563eb;
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --text:#1e293b;
+    --border:#e2e8f0;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+header{
+    background:linear-gradient(135deg,#0f172a,#2563eb);
+    color:white;
+    padding:50px 30px;
+}
+
+.header-content{
+    max-width:1200px;
+    margin:auto;
+}
+
+header h1{
+    font-size:3rem;
+    font-weight:700;
+}
+
+header p{
+    margin-top:10px;
+    opacity:.9;
+}
+
+.search-container{
+    max-width:1200px;
+    margin:-25px auto 30px;
+    padding:0 20px;
+}
+
+.search-box{
+    background:white;
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.search-box input{
+    width:100%;
+    border:none;
+    outline:none;
+    font-size:16px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.section-title{
+    margin-bottom:20px;
+    font-size:1.4rem;
+    font-weight:600;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:var(--card);
+    border-radius:18px;
+    padding:22px;
+    border:1px solid var(--border);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 30px rgba(0,0,0,.08);
+}
+
+.icon{
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+.category{
+    display:inline-block;
+    padding:6px 12px;
+    background:#dbeafe;
+    color:#1d4ed8;
+    border-radius:20px;
+    font-size:12px;
+    margin-bottom:12px;
+}
+
+.card h3{
+    font-size:1.1rem;
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:.92rem;
+    color:#64748b;
+    margin-bottom:18px;
+}
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    background:var(--accent);
+    color:white;
+    padding:10px 18px;
+    border-radius:10px;
+    font-weight:600;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    color:#64748b;
+}
+
+@media(max-width:768px){
+
+header h1{
+    font-size:2rem;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <h1>📚 Central de Documentos</h1>
+        <p>Acesso rápido a documentos, orientações, relatórios e materiais pedagógicos.</p>
+    </div>
+</header>
+
+<div class="search-container">
+    <div class="search-box">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Pesquisar documento...">
+    </div>
+</div>
+
+<div class="container">
+
+    <h2 class="section-title">Documentos Disponíveis</h2>
+
+    <div class="grid" id="documentGrid">
+
+        <div class="card">
+            <div class="icon">📄</div>
+            <span class="category">Calendário</span>
+            <h3>Calendário Escolar 2026</h3>
+            <p>Calendário homologado para consulta.</p>
+            <a class="btn" href="dados.pdf" target="_blank">
+                Abrir PDF
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="icon">📘</div>
+            <span class="category">PGA</span>
+            <h3>Plano de Gestão da Aprendizagem</h3>
+            <p>Orientações e acompanhamento pedagógico.</p>
+            <a class="btn" href="/documentos/pga.pdf" target="_blank">
+                Abrir PDF
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="icon">📑</div>
+            <span class="category">Orientações</span>
+            <h3>Orientações Pedagógicas</h3>
+            <p>Materiais de apoio às escolas.</p>
+            <a class="btn" href="/documentos/orientacoes.pdf" target="_blank">
+                Abrir PDF
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="icon">📊</div>
+            <span class="category">Relatórios</span>
+            <h3>Relatório de Visitas</h3>
+            <p>Registros e acompanhamento escolar.</p>
+            <a class="btn" href="/documentos/relatorio.pdf" target="_blank">
+                Abrir PDF
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Central de Documentos
+</footer>
+
+<script>
+
+const searchInput = document.getElementById('searchInput');
+
+searchInput.addEventListener('keyup', function(){
+
+    let filter = this.value.toLowerCase();
+
+    let cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+
+        let text = card.innerText.toLowerCase();
+
+        if(text.includes(filter)){
+            card.style.display = '';
+        }else{
+            card.style.display = 'none';
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
